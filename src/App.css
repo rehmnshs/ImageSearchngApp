@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.title{
+  
+  margin-left: 20px;
+  display: flex;
+  align-items: flex-end;
+  font-family: monospace;
+}
+.Header{
+  display: flex;
+  flex-direction: row;
+}
+.options{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 40px;
+  list-style: none;
+  
+}
+.random{
+  border-radius: 10px;
+    width: 50%;
+}
+.main{
+ 
+}

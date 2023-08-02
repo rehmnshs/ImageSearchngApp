@@ -1,25 +1,38 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Searchbar from "./Components/SearchBar";
 import searchImages from "./api";
+import searchRandom from "./apiR";
 import ImageList from "./Components/ImageList";
 import "./App.css";
+import { SecondPage } from "./SecondPage";
 
 function App() {
-  const [real, setreal] = useState([]);
-  const handleSubmit = async (term) => {
-    const value = await searchImages(term);
+  document.title = "ImageSearch";
+  const [random,setran] = useState([]);
 
-    return setreal(value);
+  useEffect(() => {
+    handleRandom();
+  }, []);
+  const handleRandom = async () => {
+    const value = await searchRandom();
+  
+    return setran(value);
+    
+
   };
-  useEffect( () =>{
-    handleSubmit('random images');
-        },[]);
-
   return (
     <div className="mainn">
-    
-      <Searchbar onSubmit={handleSubmit} />
-      <ImageList item={real} />
+      <div className="Header">
+        <h1 className="title">SearchBar</h1>
+        <ul className="options">
+          <li onClick={handleRandom}>Random Images</li>
+          <li>Favs</li>
+        </ul>{" "}
+      </div>
+      <Searchbar />
+      
+      <ImageList item={random} />
+      <div className="main" >random images <img className="random" src={random} alt="random images"/> </div>
     </div>
   );
 }

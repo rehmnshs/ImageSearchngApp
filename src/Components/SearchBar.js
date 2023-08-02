@@ -1,24 +1,29 @@
 import { useState } from "react";
 import React from "react";
 import "./searchbarc.css";
-function Searchbar({ onSubmit }) {
+import { SecondPage } from "../SecondPage";
+import { Link } from "react-router-dom";
+function Searchbar({ OnSubmit }) {
   const [term, setTerm] = useState("");
   const handleform = (event) => {
-    event.preventDefault();
-    onSubmit(term);
+   
+    
   };
   const handleChange = (event) => {
     return setTerm(event.target.value);
   };
+
+ const link = '/search' + '/' + term;
   return (
     <div className="three">
-      <form onSubmit={handleform} className="two">
+      <form onSubmit={handleform} className="two" >
         <input
           className="one"
           name="term"
           onChange={handleChange}
           value={term}
         />
+        <Link to={link} > <button onClick={handleform}> submit </button>  </Link>
       </form>
     </div>
   );

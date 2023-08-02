@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const searchImages = async (term) => {
+const searchImages = async (term,orderby,page) => {
   
   
   const resp = await axios.get("https://api.unsplash.com/search/photos", {
@@ -9,6 +9,10 @@ const searchImages = async (term) => {
     },
     params: {
       query: term,
+      order_by:orderby,
+      content_filter:"low",
+      per_page:20,
+      page:page,
     },
   });
 
