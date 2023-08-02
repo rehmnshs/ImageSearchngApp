@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 export const SecondPage = () => {
   const param = useParams();
   const [real,setreal]= useState([]);
-  const [page,setpage] = useState();
+  const [page,setpage] = useState(2);
  
 
   
@@ -31,17 +31,17 @@ const handleClick1 =async() =>{
 }
 const handleClick2 =async() =>{
 
- setpage(page+1);
+ setpage((prevPage)=>prevPage+1);
  console.log(page);
   const orderby = "";
  const value = await searchImages(param.id,orderby,page);
- return setreal(value);
+ setreal(value);
 }
 const handleClick3 =async() =>{
  setpage(1);
   const orderby = "";
  const value = await searchImages(param.id,page,orderby);
- return setreal(value);
+  setreal(value);
 }
   return (
     <div><button onClick={handleClick}>sort by relevant </button><button onClick={handleClick1}>sort by latest </button><ImageList item={real}/>
