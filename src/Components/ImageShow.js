@@ -17,7 +17,7 @@ function ImageShow({ item }) {
       <div>
         <img
           className="main2"
-          src={item.urls.regular}
+          src={item.urls.raw}
           onClick={handleImageClick}
         />
       </div>
