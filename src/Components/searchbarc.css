@@ -22,40 +22,45 @@ padding: 10px;
 .main2{
     border-radius: 10px;
     width: 100%;
+    cursor: pointer;
 }
 .main3{columns: 6 200px;
     column-gap: 10px;
 margin-top: 40px;}
 
 
-min{
-    height: 100vh;
-    width: 100%;
-}
+
 /* ... Other styles ... */
 
 /* Style for the popup container */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background color with transparency */
+    z-index: auto; /* Ensure the overlay appears above other content */
+  }
+
 .popup-media {
     position: fixed;
    top: 50%;
    left: 50%;
-   
-    
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+   
 
   }
   
   /* Style for the close button (x symbol) */
   .popup-media span {
     position: absolute;
-    top: 10px;
-    right: 5px;
+   left: 100%; 
     cursor: pointer;
-    font-size: 20px;
-    padding: 1px;
+    font-size: 30px;
+    color: white;
   }
   
   .popup-media img {

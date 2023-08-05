@@ -21,6 +21,7 @@ function Searchbar({ OnSubmit }) {
           className="one"
           name="term"
           onChange={handleChange}
+          
           value={term}
         />
         <Link to={link} > <button onClick={handleform}> submit </button>  </Link>

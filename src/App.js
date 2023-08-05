@@ -32,7 +32,7 @@ function App() {
       <Searchbar />
       
       <ImageList item={random} />
-      <div className="main" >random images <img className="random" src={random} alt="random images"/> </div>
+     
     </div>
   );
 }
