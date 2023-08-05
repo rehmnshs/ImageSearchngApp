@@ -19,4 +19,4 @@ const router = createBrowserRouter([
 const el = document.getElementById("root");
 const root = ReactDOM.createRoot(el);
 
-root.render(<RouterProvider router={router} />);
+root.render(<RouterProvider router={router}  />);

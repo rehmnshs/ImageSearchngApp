@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./searchbarc.css";
 
-function ImageShow({ item }) {
+function ImageShow({ item,quality }) {
   const [result, setresult] = useState();
+ 
 
   const handleImageClick = () => {
     setresult(item);
@@ -13,11 +14,13 @@ function ImageShow({ item }) {
   };
 
   return (
+  
     <div className="main">
+   
       <div>
         <img
           className="main2"
-          src={item.urls.raw}
+          src={item.urls.regular}
           onClick={handleImageClick}
         />
       </div>

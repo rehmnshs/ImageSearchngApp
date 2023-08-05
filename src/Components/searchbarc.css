@@ -61,7 +61,7 @@ min{
   .popup-media img {
     display: block; /* Remove any inline spacing */
     max-width: 100%; /* Limit the image width to the container's width */
-    max-height: 80vh; /* Limit the image height to 80% of the viewport height */
+   max-height: 99vh;  /* Limit the image height to 80% of the viewport height */
     margin: 0 auto; /* Center the image horizontally within the container */
   }
   /* ... Other styles ... */
