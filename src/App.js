@@ -23,8 +23,8 @@ function App() {
     setran(value);
     return gsap.fromTo(
       ".main2",
-      { duration: 1, opacity: 0, y: 50 },
-      { duration: 2, opacity: 1, y: -20 }
+      { duration: 1.5, opacity: 0, y: 50 },
+      { duration: 1.5, opacity: 1, y: -20 }
     );
   };
   return (

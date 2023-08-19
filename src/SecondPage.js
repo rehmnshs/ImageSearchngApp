@@ -34,8 +34,8 @@ export const SecondPage = () => {
      setreal(value);
      return gsap.fromTo(
       ".main2",
-      { duration: 1, opacity: 0, y: 50 },
-      { duration: 2, opacity: 1, y: -20 }
+      { duration: 1.5, opacity: 0, y: 50 },
+      { duration: 1.5, opacity: 1, y: -20 }
     );
     
   };
@@ -47,8 +47,8 @@ export const SecondPage = () => {
     setreal(value);
     return gsap.fromTo(
       ".main2",
-      { duration: 1, opacity: 0, y: 50 },
-      { duration: 2, opacity: 1, y: -20 }
+      { duration: 1.5, opacity: 0, y: 50 },
+      { duration: 1.5, opacity: 1, y: -20 }
     );
   };
   const handleClick3 = async () => {
@@ -58,8 +58,8 @@ export const SecondPage = () => {
     setreal(value);
     return gsap.fromTo(
       ".main2",
-      { duration: 1, opacity: 0, y: 50 },
-      { duration: 2, opacity: 1, y: -20 }
+      { duration: 1.5, opacity: 0, y: 50 },
+      { duration: 1.5, opacity: 1, y: -20 }
     );
   };
   return (
