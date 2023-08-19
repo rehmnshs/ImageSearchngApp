@@ -6,7 +6,8 @@ import ImageList from "./Components/ImageList";
 import "./App.css";
 import { SecondPage } from "./SecondPage";
 import { gsap } from "gsap";
-import { ClerkProvider, RedirectToSignIn, SignIn, SignedIn, SignedOut } from "@clerk/clerk-react";
+import { ClerkProvider, RedirectToSignIn, SignIn, SignInButton, SignOutButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import LoginPage from "./LoginPage";
 
 const clerlPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -30,7 +31,9 @@ function App() {
   return (
     <ClerkProvider publishableKey={clerlPubKey}>
    
-  
+   <SignedOut>
+      <RedirectToSignIn />
+    </SignedOut>
    
    <SignedIn>
     
@@ -40,14 +43,16 @@ function App() {
         <ul className="options">
           <li onClick={handleRandom}>Random Images</li>
           <li>Favs</li>
+          <SignOutButton><li>Sign Out</li></SignOutButton>
         </ul>{" "}
       </div>
+      
       <Searchbar />
 
       <ImageList item={random} />
     </div>
     </SignedIn>
-    <SignedOut><RedirectToSignIn /></SignedOut>
+    
     </ClerkProvider>
   );
 }
