@@ -16,12 +16,12 @@
   margin: 10px;
 }
 .main2 {
-  position: relative;
-
+ 
+  
   border-radius: 10px;
   width: 100%;
   cursor: pointer;
-  opacity: 0;
+ 
 }
 .main3 {
   columns: 6 200px;

@@ -1,57 +1,53 @@
-// LoginPage.js
 import React, { useState } from "react";
-import { useAuth } from "./AuthContext";
+import axios from "axios"; // Import Axios
 
 const LoginPage = () => {
-  const { login } = useAuth();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const [message, setMessage] = useState("");
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation - Check if username and password are not empty
-    if (!username || !password) {
-      setError("Please enter your username and password.");
-      return;
-    }
+    try {
+      const response = await axios.post("http://localhost:5000/register", {
+        username: e.target.usernamee.value, // Use the value from the input field
+        password: e.target.password.value,
+      });
 
-    // Assuming the login function handles authentication with the server
-    // and returns an error message if login fails
-    const error = login({ username, password });
-
-    // If there's an error, display it to the user
-    if (error) {
-      setError(error);
+      if (response.status === 200) {
+        setMessage(response.data.message);
+      } else {
+        setMessage("Registration failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
   };
 
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleFormSubmit}>
         <div>
           <label>Username:</label>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+          name="usernamee"
           />
         </div>
         <div>
           <label>Password:</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
           />
         </div>
-        {error && <p>{error}</p>}
         <button type="submit">Log In</button>
       </form>
+      <p>{message}</p>
     </div>
   );
 };
 
 export default LoginPage;
+
