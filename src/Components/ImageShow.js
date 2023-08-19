@@ -8,8 +8,10 @@ function ImageShow({ item, quality }) {
 
   const handleImageClick = () => {
     setresult(item);
+   
     console.log(item);
     setShowOverlay(true); // Show the overlay when an image is clicked
+  
   };
 
   const handlePopupClose = () => {
@@ -17,7 +19,9 @@ function ImageShow({ item, quality }) {
     setShowOverlay(false); // Hide the overlay when the popup is closed
   };
   useEffect( () =>{
-    gsap.to(".main2",{ duration:2, opacity:1, y:100});
+    gsap.to(".main2",{ duration:3, opacity:1, y:50,stagger:0.5});
+    
+
         },[]);
     
   return (
@@ -30,7 +34,7 @@ function ImageShow({ item, quality }) {
       {result && (
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
-          <img src={result.urls.raw} />
+          <img className="pmp"src={result.urls.raw} />
         </div>
         
     
