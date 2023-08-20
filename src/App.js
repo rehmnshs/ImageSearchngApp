@@ -20,6 +20,7 @@ import {
 import getLiked from "./apiL";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const clerlPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -30,11 +31,11 @@ const Welcome = () => {
   document.title = "AstralGaze";
   const [random, setran] = useState([]);
 
-  /*  useEffect(() => {
-   // handleRandom();
+    useEffect(() => {
+    handleRandom();
     
-    }
-  }, []);  */
+    
+  }, []);  
 
   const putUserDB = async () => {
     const resp = await axios.post("http://localhost:5000/register", {
@@ -65,15 +66,15 @@ const Welcome = () => {
       { duration: 1.5, opacity: 1, y: -20 }
     );
   };
-
+const link= username + "/liked";
   return (
     <div className="mainn">
       <div className="Header">
         <h1 className="title">AstralGaze</h1>
         <ul className="options">
           <li onClick={handleRandom}>Random Images</li>
-
-          <li onClick={handleLiked}>Liked</li>
+<Link to={link}> liked</Link>
+          <li ></li>
           <li>{username}</li>
         </ul>{" "}
       </div>

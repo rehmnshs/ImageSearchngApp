@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./searchbarc.css";
 import { gsap } from "gsap";
+import axios from "axios";
+import { useUser } from "@clerk/clerk-react";
 
 function ImageShow({ item, quality }) {
   const [result, setresult] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
+  const {user} = useUser();
+  
+ 
 
   const handleImageClick = () => {
     setresult(item);
@@ -20,11 +25,21 @@ function ImageShow({ item, quality }) {
   useEffect(() => {
     gsap.fromTo(
       ".main2",
-      { duration: 1, opacity: 0, y: 50,  },
-      { duration: 3, opacity: 1, y: -20,stagger:0.0}
+      { duration: 1, opacity: 0, y: 50 },
+      { duration: 3, opacity: 1, y: -20, stagger: 0.0 }
     );
   }, []);
+  const handleLikeClick = async () => {
+    const id = result.id;
+    const username = user.username;
 
+    try {
+      const resp = await axios.post("http://localhost:5000/putID", { username:username , id: id });
+      console.log("id and username  is sent to db");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="main">
       {showOverlay && (
@@ -40,6 +55,9 @@ function ImageShow({ item, quality }) {
       {result && (
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
+          <div className="like">
+            <span><button onClick={handleLikeClick}>Like</button></span>
+          </div>
           <img className="pmp" src={result.urls.raw} />
         </div>
       )}
