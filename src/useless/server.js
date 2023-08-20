@@ -11,23 +11,34 @@ mongoose.connect("mongodb://127.0.0.1:27017/UserDB", {
 });
 
 const UserSchema = new mongoose.Schema({
-  email: String,
-  password: String,
+  username: String,
+  
 });
-
+ 
 const User = mongoose.model("User", UserSchema);
 
 // API route to get items from the database
 app.use(express.json());
 app.use(cors());
-app.post("/register", async(req, res)=>{
- const newUser = new User({
-    email:req.body.username,
-    password:req.body.password
- });
- try {
-    await newUser.save(); // Use await here to wait for the save operation to complete
-    res.render("/welcome");
+app.post("/register", async (req, res) => {
+  const username = req.body.username;
+
+  try {
+    // Check if the username already exists in the database
+    const existingUser = await User.findOne({ username: username });
+    if (existingUser) {
+      console.log("Username already exists");
+      return res.json({ message: "Username already exists" });
+      
+    }
+
+    // If the username doesn't exist, create a new user and save
+    const newUser = new User({
+      username,
+    });
+
+    await newUser.save();
+
     res.json({ message: "User registration successful" });
     console.log("saved user");
   } catch (error) {
@@ -35,6 +46,7 @@ app.post("/register", async(req, res)=>{
     res.status(500).json({ message: "User registration failed" });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
