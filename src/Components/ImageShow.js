@@ -3,12 +3,13 @@ import "./searchbarc.css";
 import { gsap } from "gsap";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
-
+const User =() =>{
+  const {user} = useUser();
+}
 function ImageShow({ item, quality }) {
   const [result, setresult] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
-  const {user} = useUser();
-  
+ 
  
 
   const handleImageClick = () => {
@@ -31,7 +32,8 @@ function ImageShow({ item, quality }) {
   }, []);
   const handleLikeClick = async () => {
     const id = result.id;
-    const username = user.username;
+   const usernamee =  <User />;
+   const username = usernamee.username;
 
     try {
       const resp = await axios.post("https://astralgaze2.onrender.com/putID", { username:username , id: id });
@@ -56,7 +58,7 @@ function ImageShow({ item, quality }) {
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
           <div className="like">
-            <span><button onClick={handleLikeClick}></button></span>
+            <span><button onClick={handleLikeClick}>Like</button></span>
           </div>
           <img className="pmp" src={result.urls.raw} />
         </div>
