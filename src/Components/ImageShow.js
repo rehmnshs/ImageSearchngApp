@@ -56,7 +56,7 @@ function ImageShow({ item, quality }) {
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
           <div className="like">
-            <span><button onClick={handleLikeClick}>Like</button></span>
+            <span><button onClick={handleLikeClick}></button></span>
           </div>
           <img className="pmp" src={result.urls.raw} />
         </div>

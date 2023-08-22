@@ -5,11 +5,14 @@ const cors = require("cors");
 const app = express();
 const PORT =  5000;
 
-mongoose.connect("mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority", {
+try { 
+  mongoose.connect("mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+} catch(error){
+  console.log(error.message)
+}
 const UserSchema = new mongoose.Schema({
   username: String,
   data: [String] 
