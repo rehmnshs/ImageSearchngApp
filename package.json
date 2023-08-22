@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "react-native-dotenv": "^3.4.9"
-  },
+  }
  
 }
