@@ -11,7 +11,7 @@ function Searchbar({ OnSubmit }) {
     return setTerm(event.target.value);
   };
 
-  const link = term.trim()===""? "/search/nothing" : "/search/"+ term;
+  const link = term.trim()===""? "/search/nothing" : "/search/"+ term ;
 
   return (
     <div className="three">

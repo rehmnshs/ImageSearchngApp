@@ -48,7 +48,7 @@ const LikedPage = () => {
         <div>
           <img
             className="main2"
-            src={fi.urls.regular}
+            src={fi.urls.raw}
             
           />
         </div>

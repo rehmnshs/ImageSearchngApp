@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const PORT =  5000;
 
-mongoose.connect("mongodb://127.0.0.1:27017/UserDB", {
+mongoose.connect("mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -25,7 +25,6 @@ app.use(cors());
 // get ids
 app.get("/getIDs", async (req, res) => {
   const username = req.query.username;
-  console.log(username);
    // Use req.query to access query parameters
   
   try {
