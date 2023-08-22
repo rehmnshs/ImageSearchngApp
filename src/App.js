@@ -38,7 +38,7 @@ const Welcome = () => {
   }, []);  
 
   const putUserDB = async () => {
-    const resp = await axios.post("http://localhost:5000/register", {
+    const resp = await axios.post("https://astralgaze2.onrender.com/register", {
       username: username,
     });
     console.log("sent to the db", resp);

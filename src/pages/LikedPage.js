@@ -16,7 +16,7 @@ const LikedPage = () => {
 
   const fetchUserIDs = async (username) => {
     try {
-      const response = await axios.get(`http://localhost:5000/getIDs`, {
+      const response = await axios.get(`https://astralgaze2.onrender.com/getIDs`, {
         params: { username: username },
       });
       const ids = response.data.ids;
