@@ -46,11 +46,7 @@ const LikedPage = () => {
       <div className="main">
        
         <div>
-          <img
-            className="main2"
-            src={fi.urls.raw}
-            
-          />
+       <ImageShow item={fi} />
         </div>
       
       </div>
