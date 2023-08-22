@@ -1,27 +1,27 @@
-import express, { json } from "express";
-import { connect, Schema, model } from "mongoose";
-import cors from "cors";
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 const PORT =  5000;
 
 try { 
-  connect("mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority", {
+  mongoose.connect("mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 } catch(error){
   console.log(error.message)
 }
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   username: String,
   data: [String] 
 });
  
-const User = model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 // API route to get items from the database
-app.use(json());
+app.use(express.json());
 app.use(cors());
 
 
