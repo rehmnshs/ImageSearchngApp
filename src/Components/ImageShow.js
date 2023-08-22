@@ -34,7 +34,7 @@ function ImageShow({ item, quality }) {
     const username = user.username;
 
     try {
-      const resp = await axios.post("http://localhost:5000/putID", { username:username , id: id });
+      const resp = await axios.post("https://astralgaze2.onrender.com/putID", { username:username , id: id });
       console.log("id and username  is sent to db");
     } catch (error) {
       console.log(error);
