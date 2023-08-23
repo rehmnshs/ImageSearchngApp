@@ -85,13 +85,14 @@ function ImageShow({ item, quality, username ,like,usn}) {
       {showOverlay && (
         <div className="overlay" onClick={handlePopupClose}></div>
       )}
-      <div>
+      <div className="likedimg">
         <img
           className="main2"
           src={item.urls.small}
           onClick={handleImageClick}
           loading="lazy"
         />
+        {like===1 && <span><button onClick={handleUnlikeClick}>unLike</button> </span>}
       </div>
       {result && (
         <div className="popup-media">

@@ -55,7 +55,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 5px;
+ margin-top: -2vh;
+ padding: 5px;
+
+ 
   z-index: 1001;
 }
 
@@ -71,7 +74,7 @@
 .popup-media img {
   display: block; /* Remove any inline spacing */
   max-width: 100vw; /* Limit the image width to the container's width */
-   max-height: 98vh;
+   max-height: 100vh;
   margin: 0 auto; /* Center the image horizontally within the container */
 }
 /* ... Other styles ... */
@@ -93,4 +96,7 @@
 .blur-up.loaded {
   filter: blur(0);
   transform: scale(1);
+}
+.likedimg{
+  display: flex;
 }

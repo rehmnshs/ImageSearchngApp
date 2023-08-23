@@ -79,7 +79,7 @@ const link= username + "/liked";
         </ul>{" "}
       </div>
 
-      <Searchbar />
+      <Searchbar username={username} />
 
       <ImageList item={random} username={username}/>
     </div>

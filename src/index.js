@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/search/:id",
+    path: ":username/search/:id",
     element: <SecondPage />,
   },
   {

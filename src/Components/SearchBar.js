@@ -3,7 +3,7 @@ import React from "react";
 import "./searchbarc.css";
 import { SecondPage } from "../SecondPage";
 import { Link } from "react-router-dom";
-function Searchbar({ OnSubmit }) {
+function Searchbar({ OnSubmit,username }) {
   const [term, setTerm] = useState("");
   const handleform = (event) => {};
   const handleChange = (event) => {
@@ -11,7 +11,7 @@ function Searchbar({ OnSubmit }) {
     return setTerm(event.target.value);
   };
 
-  const link = term.trim()===""? "/search/nothing" : "/search/"+ term ;
+  const link = term.trim()===""? "/search/nothing" :  username + "/search/"+ term  ;
 
   return (
     <div className="three">

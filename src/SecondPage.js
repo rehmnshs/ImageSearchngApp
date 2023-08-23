@@ -5,10 +5,12 @@ import searchImages from "./api";
 import { useParams } from "react-router-dom";
 import { gsap } from "gsap";
 
+
 export const SecondPage = () => {
   const param = useParams();
   const [real, setreal] = useState([]);
   const [page, setpage] = useState(2);
+const username = param.username;
 
   const handleSubmit = async () => {
     const value = await searchImages(param.id);
@@ -67,7 +69,7 @@ export const SecondPage = () => {
       <button onClick={handleClick}>sort by relevant </button>
       <button onClick={handleClick1}>sort by latest </button>
      
-        <ImageList item={real} /> 
+        <ImageList item={real} username={username}/> 
      
       <div>
         <button onClick={handleClick2}>next Page</button>
