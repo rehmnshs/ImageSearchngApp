@@ -109,7 +109,28 @@ app.post("/register", async (req, res) => {
 
 //delete func
 
-app.delete("/delete", async (req, res) => {});
+app.delete("/delete", async (req, res) => {
+  try {
+    const id = req.body.id;
+    const username = req.body.username;
+
+    // Find the user by username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.json({ message: "User not found" });
+    }
+    if (user.data.includes(id)) {
+      user.data.splice(idIndex, 1);
+      return res.json({ message: "ID deleted successfully" });
+      
+    }
+    
+    await user.save();}
+    catch(error){
+      return res.status(500).json({ message: "An error occurred" });
+    }
+});
 
 app.get("/checkLike", async (req, res) => {
   const username = req.query.username;
@@ -123,8 +144,6 @@ app.get("/checkLike", async (req, res) => {
       return res.json({
         liked:true,
       });
-    } else{
-      return res.json({liked:false})
     }
   } catch (error) {
     console.error("Error retrieving IDs:", error);

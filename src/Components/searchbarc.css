@@ -1,3 +1,18 @@
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Dark background color with transparency */
+  z-index: 1001; /* Ensure the overlay appears above other content */
+}
 .one {
   border: 1px solid lightblue;
   border-radius: 5px;
@@ -32,20 +47,7 @@
 /* ... Other styles ... */
 
 /* Style for the popup container */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.7
-  ); /* Dark background color with transparency */
-  z-index: 1000; /* Ensure the overlay appears above other content */
-}
+
 
 .popup-media {
   position: fixed;

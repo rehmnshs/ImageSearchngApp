@@ -4,20 +4,42 @@ import { gsap } from "gsap";
 import axios from "axios";
 
 
-function ImageShow({ item, quality, username}) {
+
+function ImageShow({ item, quality, username,like}) {
   const [result, setresult] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
-  const [liked, setliked] = useState(false);
-  
- 
+  const [liked, setliked] = useState();
+  const [likedp,setlikedpage]= useState(like);
 
-  const handleImageClick = () => {
+  const handleImageClick = async () => {
+    setShowOverlay(true);
     setresult(item);
+    let id = item.id;
+    
+    
+    
+     if(like === 1) {  return null;}else{ 
+      const  respp = await axios.get(
+        "https://astralgaze2.onrender.com/checkLike",
+        {
+          params: { username: username, id: id },
+        }
+      );
+      setliked(respp.data.liked);}
+   
+    
 
-    console.log(item);
-    setShowOverlay(true); // Show the overlay when an image is clicked
+    // Show the overlay when an image is clicked
   };
+const handleunLikeClick =async()=>{
+  let id = item.id;
+  const resp = await axios.post("https://astralgaze2.onrender.com/delete", {
+    username: username,
+    id: id,
 
+  });
+  console.log("successfully deleted id ");
+}
   const handlePopupClose = () => {
     setresult(null);
     setShowOverlay(false); // Hide the overlay when the popup is closed
@@ -32,18 +54,14 @@ function ImageShow({ item, quality, username}) {
 
   const handleLikeClick = async () => {
     const id = result.id;
- 
-   
-  
 
     try {
-     console.log(username);
-     const respp= await axios.get("https://astralgaze2.onrender.com/checkLike",{
-      params: { username: username, id:id },
-    }
-  );
-  console.log(respp.data.liked);
-      const resp = await axios.post("https://astralgaze2.onrender.com/putID", { username:username , id: id });
+      console.log(username);
+
+      const resp = await axios.post("https://astralgaze2.onrender.com/putID", {
+        username: username,
+        id: id,
+      });
       console.log("id and username  is sent to db");
     } catch (error) {
       console.log(error);
@@ -66,8 +84,11 @@ function ImageShow({ item, quality, username}) {
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
           <div className="like">
-            <span><button onClick={handleLikeClick}>Like</button>
-            {liked && (<button>Unlike</button>)} </span>
+            <span>
+          
+            {like===1 ?<button onClick={handleunLikeClick}>unLike</button>:<button onClick={handleLikeClick}>Like</button>}
+              {liked && <button>Unlike</button>}{" "}
+            </span>
           </div>
           <img className="pmp" src={result.urls.raw} />
         </div>
