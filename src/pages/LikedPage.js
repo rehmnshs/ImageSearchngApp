@@ -45,7 +45,7 @@ const LikedPage = () => {
     return (
       <div className="main">
         
-          <ImageShow item={fi} like= {1} />
+          <ImageShow item={fi} like= {1} usn={username} />
        
       </div>
     );

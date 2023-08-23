@@ -5,11 +5,13 @@ import axios from "axios";
 
 
 
-function ImageShow({ item, quality, username,like}) {
+
+function ImageShow({ item, quality, username ,like,usn}) {
   const [result, setresult] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
   const [liked, setliked] = useState();
   const [likedp,setlikedpage]= useState(like);
+
 
   const handleImageClick = async () => {
     setShowOverlay(true);
@@ -31,15 +33,26 @@ function ImageShow({ item, quality, username,like}) {
 
     // Show the overlay when an image is clicked
   };
-const handleunLikeClick =async()=>{
-  let id = item.id;
-  const resp = await axios.post("https://astralgaze2.onrender.com/delete", {
-    username: username,
-    id: id,
+  
+  const handleUnlikeClick = async () => {
+    let id = item.id;
+   
+    
+    try {
+      const resp = await axios.delete("https://astralgaze2.onrender.com/delete", {
+        data: {
+          username: usn,
+          id: id,
+        },
+      });
+      console.log(usn);
+      console.log(resp.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  
 
-  });
-  console.log("successfully deleted id ");
-}
   const handlePopupClose = () => {
     setresult(null);
     setShowOverlay(false); // Hide the overlay when the popup is closed
@@ -86,7 +99,7 @@ const handleunLikeClick =async()=>{
           <div className="like">
             <span>
           
-            {like===1 ?<button onClick={handleunLikeClick}>unLike</button>:<button onClick={handleLikeClick}>Like</button>}
+            {like===1 ?<button onClick={handleUnlikeClick}>unLike</button>:<button onClick={handleLikeClick}>Like</button>}
               {liked && <button>Unlike</button>}{" "}
             </span>
           </div>

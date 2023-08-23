@@ -111,7 +111,7 @@ app.post("/register", async (req, res) => {
 
 app.delete("/delete", async (req, res) => {
   try {
-    const id = req.body.id;
+    const idToDelete = req.body.id;
     const username = req.body.username;
 
     // Find the user by username
@@ -120,17 +120,17 @@ app.delete("/delete", async (req, res) => {
     if (!user) {
       return res.json({ message: "User not found" });
     }
-    if (user.data.includes(id)) {
-      user.data.splice(idIndex, 1);
-      return res.json({ message: "ID deleted successfully" });
-      
-    }
-    
-    await user.save();}
-    catch(error){
-      return res.status(500).json({ message: "An error occurred" });
-    }
+
+    // Remove the specified ID from the user's data array
+    user.data = user.data.filter(id => id !== idToDelete);
+
+    // Save the updated user data
+    await user.save();
+
+    return res.json({ message: "ID deleted successfully" });
+  } 
 });
+
 
 app.get("/checkLike", async (req, res) => {
   const username = req.query.username;
