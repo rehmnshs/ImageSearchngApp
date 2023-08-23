@@ -79,3 +79,17 @@ h3 {
 .randomH {
   cursor: pointer;
 }
+
+@media (max-width: 532px) {
+  .Header{
+    display: flex;
+    flex-direction: column;
+  }
+  .H2{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+
+  }
+}
