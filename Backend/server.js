@@ -128,7 +128,10 @@ app.delete("/delete", async (req, res) => {
     await user.save();
 
     return res.json({ message: "ID deleted successfully" });
-  } 
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ message: "An error occurred" });
+  }
 });
 
 
