@@ -6,6 +6,7 @@ import ImageList from "./Components/ImageList";
 import "./App.css";
 import { SecondPage } from "./SecondPage";
 import { gsap } from "gsap";
+
 import {
   ClerkProvider,
   RedirectToSignIn,
@@ -14,6 +15,7 @@ import {
   SignOutButton,
   SignedIn,
   SignedOut,
+  UserButton,
   useUser,
 } from "@clerk/clerk-react";
 
@@ -21,6 +23,7 @@ import getLiked from "./apiL";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 
 const clerlPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -31,11 +34,9 @@ const Welcome = () => {
   document.title = "AstralGaze";
   const [random, setran] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
     handleRandom();
-    
-    
-  }, []);  
+  }, []);
 
   const putUserDB = async () => {
     const resp = await axios.post("https://astralgaze2.onrender.com/register", {
@@ -66,22 +67,26 @@ const Welcome = () => {
       { duration: 1.5, opacity: 1, y: -20 }
     );
   };
-const link= username + "/liked";
+  const link = username + "/liked";
   return (
     <div className="mainn">
+    <div className="H2">
       <div className="Header">
         <h1 className="title">AstralGaze</h1>
-        <ul className="options">
-          <li onClick={handleRandom}>Random Images</li>
-<Link to={link}> liked</Link>
-          <li ></li>
-          <li>{username}</li>
-        </ul>{" "}
-      </div>
 
+        <h3 className="randomH" onClick={handleRandom}>Random Images</h3>
+        <Link className="likedlink" to={link}>
+          <h3>Liked</h3>
+        </Link>
+
+        <h3>{username}</h3>
+       
+      </div>
+     <div className="accountIcon"><UserButton ></UserButton></div>
+     </div>
       <Searchbar username={username} />
 
-      <ImageList item={random} username={username}/>
+      <ImageList item={random} username={username} />
     </div>
   );
 };

@@ -13,16 +13,42 @@
   ); /* Dark background color with transparency */
   z-index: 1001; /* Ensure the overlay appears above other content */
 }
-.one {
-  border: 1px solid lightblue;
-  border-radius: 5px;
-  padding: 10px;
-}
-.two {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 100px;
+
+  .inputf {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1.7px solid rgb(57, 62, 70);
+  }
+  
+  .sendIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  
+  }
+  .sendIcon path{
+     fill: rgb(57, 62, 70);
+  }
+
+  .hidden-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: none;
+    border: none;
+   
+    cursor: pointer;
+    margin-left: -10px;
+    
+  }
+.inputForm{
+ display: flex;
+ gap: 10px;
+ align-items: center;
+ justify-content: center;
+ margin: 100px;
 }
 .main {
   display: flex;
