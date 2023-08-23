@@ -7,7 +7,7 @@ const searchRandom = async () => {
     },
     params: {
       content_filter: "low",
-      count: 5,
+      count: 2,
     },
   });
 

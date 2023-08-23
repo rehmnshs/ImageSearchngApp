@@ -7,6 +7,7 @@ import axios from "axios";
 function ImageShow({ item, quality, username}) {
   const [result, setresult] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
+  const [liked, setliked] = useState(false);
   
  
 
@@ -37,6 +38,11 @@ function ImageShow({ item, quality, username}) {
 
     try {
      console.log(username);
+     const respp= await axios.get("https://astralgaze2.onrender.com/checkLike",{
+      params: { username: username, id:id },
+    }
+  );
+  console.log(respp.data.liked);
       const resp = await axios.post("https://astralgaze2.onrender.com/putID", { username:username , id: id });
       console.log("id and username  is sent to db");
     } catch (error) {
@@ -51,15 +57,17 @@ function ImageShow({ item, quality, username}) {
       <div>
         <img
           className="main2"
-          src={item.urls.regular}
+          src={item.urls.small}
           onClick={handleImageClick}
+          loading="lazy"
         />
       </div>
       {result && (
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
           <div className="like">
-            <span><button onClick={handleLikeClick}>Like</button></span>
+            <span><button onClick={handleLikeClick}>Like</button>
+            {liked && (<button>Unlike</button>)} </span>
           </div>
           <img className="pmp" src={result.urls.raw} />
         </div>

@@ -3,42 +3,44 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-const PORT =  5000;
+const PORT = 5000;
 
-try { 
-  mongoose.connect("mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-} catch(error){
-  console.log(error.message)
+try {
+  mongoose.connect(
+    "mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
+} catch (error) {
+  console.log(error.message);
 }
 const UserSchema = new mongoose.Schema({
   username: String,
-  data: [String] 
+  data: [String],
 });
- 
+
 const User = mongoose.model("User", UserSchema);
 
 // API route to get items from the database
 app.use(express.json());
 app.use(cors());
 
-
 // get ids
 app.get("/getIDs", async (req, res) => {
   const username = req.query.username;
-   // Use req.query to access query parameters
-  
+  // Use req.query to access query parameters
+
   try {
     console.log(username);
     const user = await User.findOne({ username });
-    
+
     if (!user) {
       return res.json({ message: "User not found" });
     }
-    
-    const ids = user.data; 
+
+    const ids = user.data;
     res.json({ ids });
     console.log("IDs retrieved for the user");
   } catch (error) {
@@ -49,31 +51,31 @@ app.get("/getIDs", async (req, res) => {
 
 // end of get ids
 ///putting id
-app.post("/putID",async(req,res)=>{
-  
+app.post("/putID", async (req, res) => {
   try {
-    const id= req.body.id;
-  const username = req.body.username;
+    const id = req.body.id;
+    const username = req.body.username;
 
     // Find the user by username
     const user = await User.findOne({ username });
-    
 
     if (!user) {
       return res.json({ message: "User not found" });
-  } 
-  if (user.data.includes(id)) {
-    console.log("ID already exists in the user's data array");
-    return res.json({ message: "ID already exists in the user's data array" });
+    }
+    if (user.data.includes(id)) {
+      console.log("ID already exists in the user's data array");
+      return res.json({
+        message: "ID already exists in the user's data array",
+      });
+    }
+    user.data.push(id);
+    await user.save();
+    res.json({ message: "ID added to user's data array successfully" });
+    console.log("ID added to user's data array");
+  } catch (error) {
+    console.error("Error adding ID to user's data array:", error);
+    res.status(500).json({ message: "Failed to add ID" });
   }
-  user.data.push(id);
-  await user.save();
-  res.json({ message: "ID added to user's data array successfully" });
-  console.log("ID added to user's data array");
-} catch (error) {
-  console.error("Error adding ID to user's data array:", error);
-  res.status(500).json({ message: "Failed to add ID" });
-}
 });
 ///end of id
 
@@ -87,7 +89,6 @@ app.post("/register", async (req, res) => {
     if (existingUser) {
       console.log("Username already exists");
       return res.json({ message: "Username already exists" });
-      
     }
 
     // If the username doesn't exist, create a new user and save
@@ -106,9 +107,30 @@ app.post("/register", async (req, res) => {
 });
 // END OF REG FUNCTIONALITIES
 
+//delete func
 
+app.delete("/delete", async (req, res) => {});
 
+app.get("/checkLike", async (req, res) => {
+  const username = req.query.username;
+  const id = req.query.id;
+  // Use req.query to access query parameters
 
+  try {
+    const user = await User.findOne({ username });
+    if (user.data.includes(id)) {
+      console.log("ID already exists in the user's data array");
+      return res.json({
+        liked:true,
+      });
+    } else{
+      return res.json({liked:false})
+    }
+  } catch (error) {
+    console.error("Error retrieving IDs:", error);
+    res.status(500).json({ message: "Failed to retrieve IDs" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -81,3 +81,14 @@
 .like{
   margin: 5vh;
 }
+.blur-up {
+  filter: blur(10px);
+  
+  transition: filter 0.3s, transform 0.3s;
+}
+
+/* Remove the blur effect and scale on hover */
+.blur-up.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}

@@ -2,23 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import getLikedImgs from "./likedapi";
-import ImageList from "../Components/ImageList";
+
 import ImageShow from "../Components/ImageShow";
-import  "../Components/searchbarc.css";
+import "../Components/searchbarc.css";
 
 const LikedPage = () => {
   const params = useParams();
   const username = params.username;
   const [userIDs, setUserIDs] = useState([]);
-  
-
-
 
   const fetchUserIDs = async (username) => {
     try {
-      const response = await axios.get(`https://astralgaze2.onrender.com/getIDs`, {
-        params: { username: username },
-      });
+      const response = await axios.get(
+        `https://astralgaze2.onrender.com/getIDs`,
+        {
+          params: { username: username },
+        }
+      );
       const ids = response.data.ids;
       setUserIDs(ids);
     } catch (error) {
@@ -44,18 +44,16 @@ const LikedPage = () => {
   const rede = likedImages.map((fi) => {
     return (
       <div className="main">
+        
+          <ImageShow item={fi} />
        
-        <div>
-       <ImageShow item={fi} />
-        </div>
-      
       </div>
     );
   });
 
-return (
+  return (
     <div>
-      <h1>Images Liked by {fi}</h1>
+      <h3><center>Images Liked by {username}</center></h3>
       <div>{rede}</div>
     </div>
   );
