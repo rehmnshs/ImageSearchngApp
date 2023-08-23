@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./searchbarc.css";
 import { gsap } from "gsap";
 import axios from "axios";
-import { useUser } from "@clerk/clerk-react";
-const User =() =>{
-  const {user} = useUser();
-}
-function ImageShow({ item, quality }) {
+
+
+function ImageShow({ item, quality, username}) {
   const [result, setresult] = useState();
   const [showOverlay, setShowOverlay] = useState(false);
- 
+  
  
 
   const handleImageClick = () => {
@@ -30,12 +28,15 @@ function ImageShow({ item, quality }) {
       { duration: 3, opacity: 1, y: -20, stagger: 0.0 }
     );
   }, []);
+
   const handleLikeClick = async () => {
     const id = result.id;
-   const usernamee =  <User />;
-   const username = usernamee.username;
+ 
+   
+  
 
     try {
+     console.log(username);
       const resp = await axios.post("https://astralgaze2.onrender.com/putID", { username:username , id: id });
       console.log("id and username  is sent to db");
     } catch (error) {

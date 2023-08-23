@@ -81,7 +81,7 @@ const link= username + "/liked";
 
       <Searchbar />
 
-      <ImageList item={random} />
+      <ImageList item={random} username={username}/>
     </div>
   );
 };
