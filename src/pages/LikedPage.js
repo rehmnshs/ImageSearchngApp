@@ -56,7 +56,7 @@ const LikedPage = () => {
   return (
     <>
     <div className="LikedHeader"><h3 className="headerr">Images Liked by {username}</h3></div>
-    <div >
+    <div className="main3">
       <div>{rede}</div>
     </div>
     </>
