@@ -51,11 +51,15 @@ const LikedPage = () => {
     );
   });
 
+
+
   return (
-    <div>
-      <h3><center>Images Liked by {username}</center></h3>
+    <>
+    <div className="LikedHeader"><h3 className="headerr">Images Liked by {username}</h3></div>
+    <div >
       <div>{rede}</div>
     </div>
+    </>
   );
 };
 
