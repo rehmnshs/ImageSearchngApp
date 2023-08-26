@@ -105,7 +105,7 @@ function ImageShow({ item, quality, username ,like,usn}) {
           
             <span>
           
-            {like===1 ?<button onClick={handleUnlikeClick}>unLike</button>:<button onClick={handleLikeClick}>Like</button>}
+            {like===1 ?<button onClick={handleUnlikeClick}>unLike {item.alt_description}</button>:<button onClick={handleLikeClick}>{item.alt_description}</button>}
               {liked && <button>Unlike</button>}{" "}
             </span>
           </div>
