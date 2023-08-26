@@ -7,7 +7,7 @@ const PORT = 5000;
 
 try {
   mongoose.connect(
-    process.env.REACT_APP_MONGODB_URI ,
+     process.env.REACT_APP_MONGODB_URI ,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
