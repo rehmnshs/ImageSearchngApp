@@ -66,7 +66,8 @@ function ImageShow({ item, quality, username ,like,usn}) {
   }, []);
 
   const handleLikeClick = async () => {
-    const id = result.id;
+    
+    const id = item.id;
 
     try {
       console.log(username);
@@ -93,7 +94,7 @@ function ImageShow({ item, quality, username ,like,usn}) {
           src={item.urls.small}
           onClick={handleImageClick}
           loading="lazy"
-        /><button className="like-button">like</button>
+        /><button className="like-button" onClick={handleLikeClick}>like</button>
         {like===1 && <span><button className="like-button" onClick={handleUnlikeClick}>unLike</button> </span>}
       </div>
       </div>
@@ -101,6 +102,7 @@ function ImageShow({ item, quality, username ,like,usn}) {
         <div className="popup-media">
           <span onClick={handlePopupClose}> &times;</span>
           <div className="like">
+          
             <span>
           
             {like===1 ?<button onClick={handleUnlikeClick}>unLike</button>:<button onClick={handleLikeClick}>Like</button>}

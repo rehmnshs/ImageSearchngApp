@@ -105,6 +105,7 @@
 .like {
   margin: 5vh;
 }
+
 .blur-up {
   filter: blur(10px);
 
@@ -120,7 +121,7 @@
   display: flex;
 }
 
-.headerr {
+.LikedHeader {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,6 +140,9 @@
 }
 .like-button {
   position: absolute;
+  
+  background: none;
+  border: none;
   bottom: 10px;
   right: 10px;
   padding: 8px 16px;
@@ -148,7 +152,8 @@
   border-radius: 4px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.8s ease;
+  
 }
 .main:hover .like-button{
   opacity: 1;
