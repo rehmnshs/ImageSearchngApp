@@ -7,7 +7,7 @@ const PORT = 5000;
 
 try {
   mongoose.connect(
-     process.env.REACT_APP_MONGODB_URI ,
+    "mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
