@@ -2,10 +2,8 @@ import { gsap } from "gsap";
 import ImageShow from "./ImageShow";
 import "./searchbarc.css";
 function ImageList({ item,username }) {
-  let list=[];
-  list = item
-  const rede = list.map((iteme) => {
-    return <ImageShow item={iteme} username={username} />;
+  const rede = item.map((item) => {
+    return <ImageShow item={item} username={username} />;
   });
 
   return (
