@@ -4,10 +4,10 @@ const cors = require("cors");
 
 const app = express();
 const PORT = 5000;
-
+require('dotenv').config(); 
 try {
   mongoose.connect(
-    "mongodb+srv://rehmnshs:Imbatmann@rehman.62aufae.mongodb.net/?retryWrites=true&w=majority",
+    process.env.MONGODB_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
